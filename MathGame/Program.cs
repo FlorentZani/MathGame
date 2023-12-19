@@ -11,7 +11,7 @@ namespace MathGame
         static void Main(string[] args)
         {
 
-
+                //Declaration of variables we need to use to keep track of correct answers
                 int xAdd = 0;
                 int yAdd = 0;
                 
@@ -32,16 +32,23 @@ namespace MathGame
 
                 while (Console.ReadKey().Key != ConsoleKey.Enter) { }
                 
-
+            //We open a while loop which can be broken only if user decides to press 0-QUIT
             while (true)
             {
 
                 Console.WriteLine("Choose what type of game do you want to play:\n 0-QUIT \n 1-ADDITION \n 2-SUBSTRACTION \n 3-MULTIPLICATION \n 4-DIVISION \n 5-View Score");
 
 
-                string userInput = Console.ReadLine();
+                string userInput = Console.ReadLine(); //Gets user input
                 int number;
-                int.TryParse(userInput, out number);
+
+                bool isNum = int.TryParse(userInput, out number); //checks if the user input is a number
+                while (!isNum)
+                {
+                    Console.WriteLine("Input a number from 0 to 5");
+                    userInput = Console.ReadLine();
+                    isNum = int.TryParse(userInput, out number);
+                }
                 int i = 0;
                 
 
@@ -52,11 +59,17 @@ namespace MathGame
                     {
                         break;
                     }
+                    else
+                    {
+                        Console.WriteLine("Input a number from 0 to 5");
+                        userInput = Console.ReadLine();
+                        int.TryParse(userInput, out number);
+                    }
 
-                    userInput = Console.ReadLine();
-                    int.TryParse(userInput, out number);
+                    
 
                 }
+
 
                 if (number == 0)
                 {
